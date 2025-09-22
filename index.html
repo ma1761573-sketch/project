@@ -40,7 +40,7 @@
     }
 
     /* التطبيق */
-    .app {
+    .app, .contactPage {
       display: none;
       max-width: 850px;
       margin: 2rem auto;
@@ -104,7 +104,7 @@
     .sell {background: linear-gradient(135deg,#ff4d4d,#ff7070);}
 
     button {
-      margin-top: 1.5rem;
+      margin-top: 1rem;
       padding: .7rem 1.5rem;
       border: none;
       border-radius: 25px;
@@ -166,7 +166,31 @@
       </div>
     </div>
 
-    <button class="btn" id="calc">احسب</button>
+    <button id="calc">احسب</button>
+    <button id="confirm">✅ تأكيد الشراء</button>
+    <button id="contact">📞 التواصل مع الشركة</button>
+  </section>
+
+  <!-- صفحة التواصل -->
+  <section class="contactPage" id="contactPage">
+    <h2>التواصل مع الشركة</h2>
+    <div class="form-group">
+      <label>👤 الاسم:</label>
+      <input type="text" id="name" placeholder="ادخل اسمك">
+    </div>
+    <div class="form-group">
+      <label>📧 البريد الإلكتروني:</label>
+      <input type="email" id="email" placeholder="example@email.com">
+    </div>
+    <div class="form-group">
+      <label>📱 رقم الهاتف:</label>
+      <input type="tel" id="phone" placeholder="0123456789">
+    </div>
+    <div class="form-group">
+      <label>📍 الموقع المطلوب:</label>
+      <input type="text" id="location" placeholder="اكتب الموقع الذي تريده">
+    </div>
+    <button id="send">📨 إرسال البيانات</button>
   </section>
 
   <script>
@@ -183,6 +207,8 @@
     const startBtn = document.getElementById('startBtn');
     const landing = document.getElementById('landing');
     const app = document.getElementById('app');
+    const contactPage = document.getElementById('contactPage');
+
     const typeEl = document.getElementById('type');
     const areaEl = document.getElementById('area');
     const areaRange = document.getElementById('areaRange');
@@ -190,6 +216,9 @@
     const buyPriceEl = document.getElementById('buyPrice');
     const sellPriceEl = document.getElementById('sellPrice');
     const calcBtn = document.getElementById('calc');
+    const confirmBtn = document.getElementById('confirm');
+    const contactBtn = document.getElementById('contact');
+    const sendBtn = document.getElementById('send');
 
     startBtn.onclick = ()=>{
       landing.style.display='none';
@@ -218,7 +247,28 @@
       buyPriceEl.innerHTML = `<span class="icon">💰</span> سعر الشراء: ${totalBuy.toLocaleString('ar-EG')} جنيه`;
       sellPriceEl.innerHTML = `<span class="icon">🔻</span> سعر البيع: ${totalSell.toLocaleString('ar-EG')} جنيه`;
     }
+
+    confirmBtn.onclick = ()=>{
+      alert("✅ تم تأكيد عملية الشراء بنجاح!");
+    }
+
+    contactBtn.onclick = ()=>{
+      app.style.display='none';
+      contactPage.style.display='block';
+    }
+
+    sendBtn.onclick = ()=>{
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const location = document.getElementById('location').value;
+
+      if(name && email && phone && location){
+        alert(`✅ تم إرسال بياناتك:\nالاسم: ${name}\nالإيميل: ${email}\nالهاتف: ${phone}\nالموقع: ${location}`);
+      } else {
+        alert("⚠️ من فضلك املأ جميع الحقول");
+      }
+    }
   </script>
 </body>
 </html>
-
